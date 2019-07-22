@@ -11,18 +11,31 @@
     <input type="email" placeholder="Email..." id="email_field" />
     <input type="password" placeholder="Password..." id="password_field" />
 
-    <button onclick="login()">Log in</button>
+    <button onclick="login()" onclick="renderMemo()">Log in</button>
     <button onclick="signup()">Sign up</button>
   </div>
 
 
   <div id="user_div" class="loggedin-div">
-    <h3>Welcome User</h3>
-    <p id="user_para">Welcome to TODO web app. You're currently logged in.</p>
+    <h1>Memo</h1>
+      <p id="user_para">Welcome to TODO web app. You're currently logged in.</p>
+      <div id="content">
+        <form id="add-memo-form">
+          <input type="text" name="name" placeholder="Item name" />
+          <input type="text" name="desc" placeholder="Item description" />
+          <button onclick="renderMemo()" id="additem">Add Item</button>
+        </form>
+
+        <ul id="memo-list"></ul>
+      </div>
+    <script src="user.js"></script>
     <button onclick="logout()">Logout</button>
   </div>
 
-  <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase.js"></script> -->
+  <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"> </script>
+<script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js"> </script>
   <script>
     // Initialize Firebase
     var config = {
@@ -30,11 +43,12 @@
       authDomain: "todo-b3d62.firebaseapp.com",
       databaseURL: "https://todo-b3d62.firebaseio.com",
       projectId: "todo-b3d62",
-      storageBucket: "",
+      storageBucket: "todo-b3d62.appspot.com",
       messagingSenderId: "290128386989",
       appId: "1:290128386989:web:f98bb14ba1679c19"
     };
     firebase.initializeApp(config);
+    const db = firebase.firestore();
   </script>
   <script src="index.js"></script>
 
